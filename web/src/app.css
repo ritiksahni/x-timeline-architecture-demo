@@ -1,0 +1,364 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* Updated color palette - Indigo theme */
+  --brand-blue: #4F46E5;
+  --brand-blue-light: #EEF2FF;
+  --brand-cream: #F8FAFC;
+  --brand-cta: #F97316;
+  --brand-cta-hover: #EA580C;
+  --text-primary: #1E1B4B;
+  --text-secondary: #475569;
+  --text-muted: #94A3B8;
+  
+  font-family: 'Inter', system-ui, sans-serif;
+  line-height: 1.6;
+  font-weight: 400;
+  color: var(--text-secondary);
+  background-color: var(--brand-cream);
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+}
+
+/* Headings use Instrument Serif */
+h1, h2, h3, h4, h5, h6 {
+  font-family: 'Instrument Serif', Georgia, serif;
+  color: var(--brand-blue);
+  font-weight: 400;
+  line-height: 1.2;
+}
+
+/* Brand link styles */
+a {
+  color: var(--brand-blue);
+  text-decoration: none;
+  transition: opacity 0.2s ease;
+}
+
+a:hover {
+  opacity: 0.8;
+}
+
+/* Card component */
+.card {
+  @apply bg-white rounded-2xl shadow-sm p-5 sm:p-8 border border-gray-100;
+  transition: box-shadow 0.2s ease, transform 0.2s ease;
+}
+
+.card:hover {
+  @apply shadow-md;
+}
+
+/* Button base */
+.btn {
+  @apply px-5 py-2.5 rounded-full font-medium transition-all duration-200 inline-flex items-center justify-center;
+  cursor: pointer;
+}
+
+.btn:disabled {
+  @apply opacity-50 cursor-not-allowed;
+}
+
+/* Primary button */
+.btn-primary {
+  background-color: var(--brand-blue);
+  @apply text-white hover:opacity-90 shadow-sm;
+}
+
+.btn-primary:hover:not(:disabled) {
+  background-color: #4338CA;
+}
+
+/* CTA button - Orange accent */
+.btn-cta {
+  background-color: var(--brand-cta);
+  @apply text-white shadow-md;
+}
+
+.btn-cta:hover:not(:disabled) {
+  background-color: var(--brand-cta-hover);
+  @apply shadow-lg;
+}
+
+/* Secondary button */
+.btn-secondary {
+  @apply bg-white text-gray-700 border border-gray-200 hover:border-gray-300 hover:bg-gray-50;
+}
+
+/* Form inputs */
+.input {
+  @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-white;
+  --tw-ring-color: var(--brand-blue);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.input:focus {
+  --tw-ring-opacity: 0.3;
+  border-color: var(--brand-blue);
+}
+
+.select {
+  @apply w-full px-4 py-3 border border-gray-200 rounded-xl focus:outline-none focus:ring-2 focus:border-transparent bg-white cursor-pointer;
+  --tw-ring-color: var(--brand-blue);
+}
+
+/* Section spacing */
+.section {
+  @apply py-16 md:py-24;
+}
+
+/* Prose styling for educational content */
+.prose {
+  @apply text-gray-600 leading-relaxed;
+}
+
+.prose strong {
+  @apply text-gray-900 font-semibold;
+}
+
+/* Strategy cards */
+.strategy-card {
+  @apply bg-white rounded-2xl p-6 border border-gray-100 transition-all duration-200;
+}
+
+.strategy-card:hover {
+  @apply shadow-lg border-gray-200;
+  transform: translateY(-2px);
+}
+
+/* Code blocks */
+code {
+  @apply bg-gray-100 px-2 py-1 rounded text-sm font-mono;
+  color: var(--brand-blue);
+}
+
+/* Blockquote styling */
+blockquote {
+  @apply border-l-4 pl-6 italic text-gray-600 my-8;
+  border-color: var(--brand-blue);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #d1d5db;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #9ca3af;
+}
+
+/* ============================================
+   Fan-Out Animation Keyframes
+   ============================================ */
+
+/* Pulse animation for author node when tweet is sent */
+@keyframes pulse-author {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.1); }
+  100% { transform: scale(1); }
+}
+
+/* Line drawing animation */
+@keyframes draw-line {
+  0% { 
+    stroke-dashoffset: 300;
+    opacity: 0.3;
+  }
+  100% { 
+    stroke-dashoffset: 0;
+    opacity: 1;
+  }
+}
+
+/* Node receive pulse */
+@keyframes node-receive {
+  0% { 
+    transform: scale(1);
+    background-color: #f8fafc;
+  }
+  50% { 
+    transform: scale(1.05);
+    background-color: #EEF2FF;
+  }
+  100% { 
+    transform: scale(1);
+    background-color: #EEF2FF;
+  }
+}
+
+/* Checkmark appear animation */
+@keyframes check-appear {
+  0% { 
+    opacity: 0;
+    transform: scale(0);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% { 
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Counter increment animation */
+@keyframes counter-pulse {
+  0%, 100% { 
+    transform: scale(1);
+  }
+  50% { 
+    transform: scale(1.05);
+  }
+}
+
+/* Tweet bubble appear */
+@keyframes tweet-appear {
+  0% {
+    opacity: 0;
+    transform: translateY(10px) scale(0.9);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Gentle float animation for idle state */
+@keyframes gentle-float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Progress step animation */
+@keyframes step-complete {
+  0% {
+    background-color: #e5e7eb;
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(1.2);
+  }
+  100% {
+    background-color: var(--brand-blue);
+    transform: scale(1);
+  }
+}
+
+/* ============================================
+   Utility Animation Classes
+   ============================================ */
+
+.animate-pulse-author {
+  animation: pulse-author 600ms ease-out;
+}
+
+.animate-draw-line {
+  animation: draw-line 400ms ease-out forwards;
+}
+
+.animate-node-receive {
+  animation: node-receive 400ms ease-out forwards;
+}
+
+.animate-check-appear {
+  animation: check-appear 200ms ease-out forwards;
+}
+
+.animate-counter-pulse {
+  animation: counter-pulse 300ms ease-out;
+}
+
+.animate-tweet-appear {
+  animation: tweet-appear 300ms ease-out forwards;
+}
+
+.animate-gentle-float {
+  animation: gentle-float 3s ease-in-out infinite;
+}
+
+/* ============================================
+   Reduced Motion Support
+   ============================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+  
+  .animate-gentle-float {
+    animation: none;
+  }
+}
+
+/* ============================================
+   Additional Utility Classes
+   ============================================ */
+
+/* Ring offset for selected state */
+.ring-offset-2 {
+  --tw-ring-offset-width: 2px;
+}
+
+/* Smooth transitions for interactive elements */
+.transition-smooth {
+  transition: all 0.2s ease;
+}
+
+/* Text gradient (optional for hero) */
+.text-gradient {
+  background: linear-gradient(135deg, var(--brand-blue) 0%, #6366F1 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+/* Focus visible for accessibility */
+.focus-visible-ring:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(79, 70, 229, 0.3);
+}
+
+/* Loading skeleton */
+.skeleton {
+  @apply bg-gray-200 rounded animate-pulse;
+}
+
+/* Badge styles */
+.badge {
+  @apply text-xs font-medium px-2 py-1 rounded-full;
+}
+
+.badge-celebrity {
+  @apply bg-amber-100 text-amber-700;
+}
+
+.badge-selected {
+  @apply bg-indigo-600 text-white;
+}
+
+.badge-success {
+  @apply bg-emerald-100 text-emerald-700;
+}
